@@ -1,47 +1,30 @@
 import React from 'react';
 import { View } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
-/** Microscope + blood cell illustration for the Welcome screen */
+/** Welcome illustration — microscope / activity motif */
 export function WelcomeIllustration() {
   return (
     <View className="w-64 h-64 items-center justify-center">
-      {/* Background halos */}
-      <View className="absolute w-56 h-56 rounded-full bg-primary-100 opacity-60" />
-      <View className="absolute w-40 h-40 rounded-full bg-primary-200 opacity-50" />
+      {/* Concentric halos */}
+      <View className="absolute w-56 h-56 rounded-full bg-primary-50" />
+      <View className="absolute w-44 h-44 rounded-full bg-primary-100" />
+      <View className="absolute w-32 h-32 rounded-full bg-primary-200" />
 
-      {/* Microscope body */}
-      <View className="w-20 h-28 bg-primary-600 rounded-xl items-center justify-end pb-2" style={{ marginTop: 20 }}>
-        {/* Eyepiece tube */}
-        <View className="absolute bg-primary-800 rounded-full" style={{ width: 10, height: 36, top: -28 }} />
-        {/* Eyepiece top */}
-        <View className="absolute bg-primary-900 rounded-full" style={{ width: 18, height: 10, top: -34 }} />
-        {/* Arm */}
-        <View className="absolute bg-primary-700 rounded-r-xl" style={{ width: 10, height: 50, top: 12, right: 0 }} />
-        {/* Objective lens */}
-        <View className="w-9 h-9 rounded-full bg-primary-900 border-4 border-primary-300" />
-        {/* Stage */}
-        <View className="w-16 h-3 bg-primary-400 rounded-md mt-1" />
+      {/* Central icon badge */}
+      <View className="w-20 h-20 rounded-3xl bg-primary-500 items-center justify-center">
+        <Feather name="activity" size={40} color="white" />
       </View>
 
-      {/* Decorative blood cell */}
-      <View
-        className="absolute rounded-full border-4 border-red-400"
-        style={{ width: 52, height: 52, bottom: 12, right: 12, opacity: 0.7 }}
-      >
-        <View
-          className="absolute rounded-full bg-red-300"
-          style={{ width: 20, height: 20, top: 10, left: 10, opacity: 0.5 }}
-        />
+      {/* Floating accent badges */}
+      <View className="absolute top-6 right-6 w-10 h-10 rounded-2xl bg-white shadow items-center justify-center">
+        <Feather name="eye" size={18} color="#0F82F5" />
       </View>
-
-      {/* Side dots (DNA motif) */}
-      {[0, 1, 2, 3].map((i) => (
-        <View
-          key={i}
-          className="absolute rounded-full bg-primary-400"
-          style={{ width: 10, height: 10, top: 20 + i * 20, left: 10 }}
-        />
-      ))}
+      <View className="absolute bottom-8 left-4 w-9 h-9 rounded-2xl bg-white shadow items-center justify-center">
+        <Feather name="cpu" size={16} color="#E32B2B" />
+      </View>
+      <View className="absolute top-14 left-2 w-3 h-3 rounded-full bg-primary-300" />
+      <View className="absolute bottom-14 right-2 w-2 h-2 rounded-full bg-primary-400" />
     </View>
   );
 }

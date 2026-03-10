@@ -1,57 +1,45 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
-/** Step-flow diagram illustration for the How It Works screen */
+const NODES = [
+  { icon: 'camera',       color: '#0F82F5', bg: '#EEF7FF', label: 'Capture' },
+  { icon: 'cpu',          color: '#7C3AED', bg: '#F5F3FF', label: 'Analyse' },
+  { icon: 'check-circle', color: '#059669', bg: '#ECFDF5', label: 'Result'  },
+];
+
 export function HowItWorksIllustration() {
-  const nodes = [
-    { icon: '📷', label: 'Capture' },
-    { icon: '🧠', label: 'Analyse' },
-    { icon: '✅', label: 'Result' },
-  ];
-
   return (
-    <View className="w-72 h-56 items-center justify-center">
-      {/* Background card */}
-      <View className="absolute w-72 h-52 bg-primary-50 rounded-3xl" />
+    <View className="w-72 h-52 items-center justify-center">
+      {/* Card background */}
+      <View className="absolute w-72 h-48 bg-gray-50 rounded-3xl border border-gray-100" />
 
-      <View className="flex-row items-center gap-2 px-6">
-        {nodes.map((node, i) => (
+      <View className="flex-row items-center px-6" style={{ gap: 6 }}>
+        {NODES.map((node, i) => (
           <React.Fragment key={node.label}>
-            {/* Node */}
-            <View className="items-center gap-2">
-              <View className="w-16 h-16 rounded-2xl bg-white shadow items-center justify-center border border-primary-100">
-                <Text style={{ fontSize: 28 }}>{node.icon}</Text>
+            {/* Step card */}
+            <View className="items-center" style={{ gap: 8 }}>
+              <View
+                className="w-14 h-14 rounded-2xl items-center justify-center shadow-sm"
+                style={{ backgroundColor: node.bg, borderWidth: 1, borderColor: node.bg }}
+              >
+                <Feather name={node.icon} size={26} color={node.color} />
               </View>
-              <Text className="text-xs font-semibold text-primary-700">{node.label}</Text>
+              <Text className="text-xs font-semibold text-gray-600">{node.label}</Text>
             </View>
-
-            {/* Connector arrow */}
-            {i < nodes.length - 1 && (
+            {/* Arrow */}
+            {i < NODES.length - 1 && (
               <View className="mb-5">
-                <View className="w-6 h-0.5 bg-primary-300" />
-                <View
-                  className="absolute bg-primary-300"
-                  style={{
-                    width: 6,
-                    height: 6,
-                    right: -3,
-                    top: -2.5,
-                    transform: [{ rotate: '45deg' }],
-                    borderTopWidth: 2,
-                    borderRightWidth: 2,
-                    borderColor: '#93C5FD',
-                    backgroundColor: 'transparent',
-                  }}
-                />
+                <Feather name="chevron-right" size={20} color="#D1D5DB" />
               </View>
             )}
           </React.Fragment>
         ))}
       </View>
 
-      {/* Decorative circles */}
-      <View className="absolute top-4 right-4 w-8 h-8 rounded-full bg-primary-200 opacity-50" />
-      <View className="absolute bottom-4 left-4 w-6 h-6 rounded-full bg-accent opacity-30" />
+      {/* Decorative dots */}
+      <View className="absolute top-3 right-5 w-3 h-3 rounded-full bg-primary-200" />
+      <View className="absolute bottom-3 left-5 w-2 h-2 rounded-full bg-red-200" />
     </View>
   );
 }
